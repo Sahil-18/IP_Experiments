@@ -25,10 +25,12 @@ void saveThroughput(Ptr<FlowMonitor> monitor, Ptr<IPv4FlowClassifier> classifier
     for(std::map<FlowId, FlowMonitor::FlowStats>::const_iterator i = stats.begin(); i != stats.end(); i++){
         Ipv4FlowClassifier::FiveTuple t = classifier->FindFlow(i->first);
         if(t.sourceAddress == sender1_addr){
-            throughput1 = i->second.rxBytes * 8.0 / (i->second.timeLastRxPacket.GetSeconds() - i->second.timeFirstTxPacket.GetSeconds()) / 1024 / 1024;
+            double throughput1 = i->second.rxBytes * 8.0 / (i->second.timeLastRxPacket.GetSeconds() - i->second.timeFirstTxPacket.GetSeconds()) / 1024 / 1024;
+            *stream1->GetStream() << Simulator::Now().GetSeconds() << "\t" << throughput1 << std::endl;
         }
         if(t.sourceAddress == sender2_addr){
-            throughput2 = i->second.rxBytes * 8.0 / (i->second.timeLastRxPacket.GetSeconds() - i->second.timeFirstTxPacket.GetSeconds()) / 1024 / 1024;
+            double throughput2 = i->second.rxBytes * 8.0 / (i->second.timeLastRxPacket.GetSeconds() - i->second.timeFirstTxPacket.GetSeconds()) / 1024 / 1024;
+            *stream2->GetStream() << Simulator::Now().GetSeconds() << "\t" << throughput2 << std::endl;
         }
     }
     Simulator::Schedule(Seconds(1.0), &saveThroughput, monitor, classifier, throughput1, throughput2, sender1_addr, sender2_addr);
