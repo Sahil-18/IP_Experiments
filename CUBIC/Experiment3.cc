@@ -1,3 +1,10 @@
+/*
+This is the third CUBIC experiment. Here, we will measure the throughput 
+of four TCP flows of same TCP variant (CUBIC, DCTCP, HSTCP, TCP New RENO) 
+competing against 4 TCP flows of TCP RENO variant. We will vary the RTT 
+from 10ms to 160ms and measure the throughput of each flow.
+*/
+
 #include "ns3/core-module.h"
 #include "ns3/network-module.h"
 #include "ns3/internet-module.h"

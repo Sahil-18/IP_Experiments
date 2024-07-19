@@ -1,3 +1,11 @@
+/*
+This is the second CUBIC experiment. Here, we will measure the throughput 
+of two TCP flows using same TCP variants (CUBIC, NewReno, BIC, HighSpeed) 
+over a bottleneck link with varying RTTs (16ms, 32ms, 64ms, 128ms, 256ms, 512ms). 
+We will measure the throughput of the two flows and the throughput ratio of the 
+two flows. We will run the experiment for 100 seconds and measure the throughput 
+at the end of the simulation.
+*/
 #include "ns3/core-module.h"
 #include "ns3/network-module.h"
 #include "ns3/internet-module.h"
